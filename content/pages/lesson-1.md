@@ -1,5 +1,7 @@
 ---
 title: "Lesson 1: Getting Started"
+intro: content/snippets/intro.md
+outro: content/snippets/outro.md
 ---
 {% snippet "intro" %}
 
