@@ -1,0 +1,41 @@
+# The name of your site inside Pages CMS
+site: "My Site"
+
+# Where uploaded media should be stored in your repo
+media:
+  input: "static/uploads"
+  output: "/uploads"
+
+# Define content collections the CMS can edit
+collections:
+
+  # A simple content section (e.g., blog posts)
+  - name: "blog"
+    label: "Blog Posts"
+    path: "content/blog"
+    type: "folder"       # indicates this is a folder collection
+    fields:
+      - { name: "title",   label: "Title",   type: "string", required: true }
+      - { name: "date",    label: "Date",    type: "date",   default: "now" }
+      - { name: "image",   label: "Cover Image", type: "image" }
+      - { name: "tags",    label: "Tags", type: "list" }
+      - { name: "body",    label: "Body", type: "richtext" }
+
+  # Example for static pages (About, Contact, etc.)
+  - name: "pages"
+    label: "Site Pages"
+    path: "content/pages"
+    type: "folder"
+    fields:
+      - { name: "title", label: "Title", type: "string" }
+      - { name: "body", label: "Body", type: "markdown" }
+
+  # Example of a single configuration file
+  - name: "settings"
+    label: "Site Settings"
+    path: "content/settings.yml"
+    type: "file"
+    fields:
+      - { name: "site_title", label: "Site Title", type: "string" }
+      - { name: "description", label: "Tagline", type: "string" }
+      - { name: "logo", label: "Logo", type: "image" }
