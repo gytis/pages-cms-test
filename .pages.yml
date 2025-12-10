@@ -27,7 +27,9 @@ collections:
     path: "content/pages"
     type: "folder"
     fields:
-      - { name: "title", label: "Title", type: "string" }
+      - { name: "title", label: "Title", type: "string", required: true }
+      - { name: "image", label: "Image", type: "image" }
+      - { name: "video", label: "Video", type: "file", accept: "video/*" }
       - { name: "body", label: "Body", type: "markdown" }
       - { name: "snippets", label: "Import Snippets", type: "list", items: { type: "reference", collection: "snippets" } }
 
