@@ -7,50 +7,59 @@ media:
   output: "/uploads"
 
 # Define content collections the CMS can edit
-collections:
-
-  # A simple content section (e.g., blog posts)
-  - name: "blog"
-    label: "Blog Posts"
-    path: "content/blog"
-    type: "folder"       # indicates this is a folder collection
+content:
+  # Sharable content snippets that can be imported into markdown files
+  - name: "snippets"
+    label: "Content Snippets"
+    type: collection
+    path: "content/snippets"
     fields:
-      - { name: "title",   label: "Title",   type: "string", required: true }
-      - { name: "date",    label: "Date",    type: "date",   default: "now" }
-      - { name: "image",   label: "Cover Image", type: "image" }
-      - { name: "tags",    label: "Tags", type: "list" }
-      - { name: "body",    label: "Body", type: "richtext" }
+      - name: "name"
+        label: "Snippet Name"
+        type: string
+        required: true
+      - name: "slug"
+        label: "Slug"
+        type: string
+        required: true
+        pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      - name: "content"
+        label: "Content"
+        type: rich-text
+        required: true
+      - name: "description"
+        label: "Description"
+        type: text
+      - name: "tags"
+        label: "Tags"
+        type: list
 
   # Example for static pages (About, Contact, etc.)
   - name: "pages"
     label: "Site Pages"
+    type: collection
     path: "content/pages"
-    type: "folder"
     fields:
-      - { name: "title", label: "Title", type: "string", required: true }
-      - { name: "image", label: "Image", type: "image" }
-      - { name: "video", label: "Video", type: "file", accept: "video/*" }
-      - { name: "body", label: "Body", type: "markdown" }
-      - { name: "snippets", label: "Import Snippets", type: "list", items: { type: "reference", collection: "snippets" } }
-
-  # Sharable content snippets that can be imported into markdown files
-  - name: "snippets"
-    label: "Content Snippets"
-    path: "content/snippets"
-    type: "folder"
-    fields:
-      - { name: "name", label: "Snippet Name", type: "string", required: true }
-      - { name: "slug", label: "Slug", type: "string", required: true, pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
-      - { name: "content", label: "Content", type: "markdown", required: true }
-      - { name: "description", label: "Description", type: "text" }
-      - { name: "tags", label: "Tags", type: "list" }
-
-  # Example of a single configuration file
-  - name: "settings"
-    label: "Site Settings"
-    path: "content/settings.yml"
-    type: "file"
-    fields:
-      - { name: "site_title", label: "Site Title", type: "string" }
-      - { name: "description", label: "Tagline", type: "string" }
-      - { name: "logo", label: "Logo", type: "image" }
+      - name: "title"
+        label: "Title"
+        type: string
+        required: true
+      - name: "image"
+        label: "Image"
+        type: image
+      - name: "video"
+        label: "Video"
+        type: file
+      - name: "body"
+        label: "Body"
+        type: rich-text
+      - name: "intro"
+        label: "Intro Snippet"
+        type: reference
+        options:
+          collection: snippets
+      - name: "outro"
+        label: "Outro Snippet"
+        type: reference
+        options:
+          collection: snippets
