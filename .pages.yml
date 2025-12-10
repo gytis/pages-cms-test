@@ -29,6 +29,19 @@ collections:
     fields:
       - { name: "title", label: "Title", type: "string" }
       - { name: "body", label: "Body", type: "markdown" }
+      - { name: "snippets", label: "Import Snippets", type: "list", items: { type: "reference", collection: "snippets" } }
+
+  # Sharable content snippets that can be imported into markdown files
+  - name: "snippets"
+    label: "Content Snippets"
+    path: "content/snippets"
+    type: "folder"
+    fields:
+      - { name: "name", label: "Snippet Name", type: "string", required: true }
+      - { name: "slug", label: "Slug", type: "string", required: true, pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+      - { name: "content", label: "Content", type: "markdown", required: true }
+      - { name: "description", label: "Description", type: "text" }
+      - { name: "tags", label: "Tags", type: "list" }
 
   # Example of a single configuration file
   - name: "settings"
